@@ -1,6 +1,10 @@
 <?php
 
-if (!isset($_GET['id'])){http_response_code(404); echo "No ID sent."; die();}
+if (!isset($_GET['id'])){
+	http_response_code(404);
+	echo "No ID sent.";
+	die();
+}
 
 use GuzzleHttp\Client;
 use Converter\BBCodeConverter;
@@ -33,7 +37,6 @@ if ($res['result'] !== 1){
 }
 
 
-
 $info = $res['publishedfiledetails'][0];
 //echo "<pre>";
 //var_dump($info);
@@ -47,7 +50,7 @@ $author = $author['response']['players'][0];
 //echo "</pre>";
 
 $info['description'] = (new BBCodeConverter($info['description']))->toMarkdown();
-$info['description'] = preg_replace_callback('/\[h(\d)\](.*?)\[\/h\1\]/m', function($match){
+$info['description'] = preg_replace_callback('/\[h(\d)\](.*?)\[\/h\1\]/m', function ($match){
 	return str_repeat('#', intval($match[1])) . ' ' . trim($match[2]);
 }, $info['description']);
 
@@ -64,7 +67,9 @@ $card = [
 	'image:alt' => "{$info['title']} preview image."
 ];
 
-if (strlen($card['description']) < 50){unset($card['description']);}
+if (strlen($card['description']) < 50){
+	unset($card['description']);
+}
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +77,7 @@ if (strlen($card['description']) < 50){unset($card['description']);}
 	<head>
 		<title><?= htmlspecialchars($info['title']) ?></title>
 		<?php foreach ($card as $key => $value){ ?>
-		<meta name="twitter:<?= $key ?>" content="<?= htmlspecialchars($value) ?>">
+			<meta name="twitter:<?= $key ?>" content="<?= htmlspecialchars($value) ?>">
 		<?php } ?>
 	</head>
 	<body>
