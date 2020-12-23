@@ -48,10 +48,6 @@ $info['description'] = preg_replace_callback('/\[h(\d)\](.*?)\[\/h\1\]/m', funct
 	return str_repeat('#', intval($match[1])) . ' ' . trim($match[2]);
 }, $info['description']);
 
-//echo "<pre>";
-//var_dump($info['description']);
-//echo "</pre>";
-
 $card = [
 	'card' => 'summary_large_image',
 	'site' => $author['personaname'],
