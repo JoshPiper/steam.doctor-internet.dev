@@ -1,0 +1,12 @@
+{
+    "require": {
+        "symfony/dotenv": "^4.3",
+        "da-mitchell/steam-api": "^2.1",
+        "3f/converter": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Steam\\Command\\": "cmds/"
+        }
+    }
+}
