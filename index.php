@@ -38,16 +38,10 @@ if ($res['result'] !== 1){
 
 
 $info = $res['publishedfiledetails'][0];
-//echo "<pre>";
-//var_dump($info);
-//echo "</pre>";
 
 $author = $info['creator'];
 $author = $steam->run(new GetPlayerSummaries([$author]));
 $author = $author['response']['players'][0];
-//echo "<pre>";
-//var_dump($author);
-//echo "</pre>";
 
 $info['description'] = (new BBCodeConverter($info['description']))->toMarkdown();
 $info['description'] = preg_replace_callback('/\[h(\d)\](.*?)\[\/h\1\]/m', function ($match){
